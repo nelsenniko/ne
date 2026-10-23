@@ -1,0 +1,207 @@
+{
+  "categories": [
+    {
+      "id": "game",
+      "products": [
+        {
+          "id": "ff",
+          "name": "Free Fire",
+          "items": [
+            {"id":"ff-5","name":"5 Diamond","price":1000},
+            {"id":"ff-12","name":"12 Diamond","price":2000},
+            {"id":"ff-50","name":"50 Diamond","price":8000},
+            {"id":"ff-70","name":"70 Diamond","price":10000},
+            {"id":"ff-140","name":"140 Diamond","price":20000},
+            {"id":"ff-355","name":"355 Diamond","price":50000},
+            {"id":"ff-720","name":"720 Diamond","price":100000}
+          ]
+        },
+        {
+          "id": "ml",
+          "name": "Mobile Legends",
+          "items": [
+            {"id":"ml-5","name":"5 Diamond","price":2000},
+            {"id":"ml-12","name":"12 Diamond","price":4000},
+            {"id":"ml-28","name":"28 Diamond","price":8000},
+            {"id":"ml-56","name":"56 Diamond","price":15000},
+            {"id":"ml-86","name":"86 Diamond","price":22000},
+            {"id":"ml-172","name":"172 Diamond","price":43000},
+            {"id":"ml-257","name":"257 Diamond","price":65000}
+          ]
+        },
+        {
+          "id": "pubg",
+          "name": "PUBG Mobile",
+          "items": [
+            {"id":"pubg-60","name":"60 UC","price":15000},
+            {"id":"pubg-120","name":"120 UC","price":30000},
+            {"id":"pubg-325","name":"325 UC","price":75000},
+            {"id":"pubg-660","name":"660 UC","price":150000},
+            {"id":"pubg-1800","name":"1800 UC","price":375000}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "listrik",
+      "products": [
+        {
+          "id": "pln",
+          "name": "PLN",
+          "items": [
+            {"id":"pln-20","name":"Token PLN Rp20.000","price":22000},
+            {"id":"pln-50","name":"Token PLN Rp50.000","price":52000},
+            {"id":"pln-100","name":"Token PLN Rp100.000","price":102000},
+            {"id":"pln-200","name":"Token PLN Rp200.000","price":202000}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pulsa",
+      "products": [
+        {
+          "id": "telkomsel",
+          "name": "Telkomsel",
+          "items": [
+            {"id":"tsel-5","name":"Pulsa Rp5.000","price":7000},
+            {"id":"tsel-10","name":"Pulsa Rp10.000","price":12000},
+            {"id":"tsel-15","name":"Pulsa Rp15.000","price":17000},
+            {"id":"tsel-20","name":"Pulsa Rp20.000","price":22000},
+            {"id":"tsel-25","name":"Pulsa Rp25.000","price":27000}
+          ]
+        },
+        {
+          "id": "indosat",
+          "name": "Indosat",
+          "items": [
+            {"id":"isat-5","name":"Pulsa Rp5.000","price":7000},
+            {"id":"isat-10","name":"Pulsa Rp10.000","price":12000},
+            {"id":"isat-20","name":"Pulsa Rp20.000","price":22000},
+            {"id":"isat-25","name":"Pulsa Rp25.000","price":27000},
+            {"id":"isat-50","name":"Pulsa Rp50.000","price":52000}
+          ]
+        },
+        {
+          "id": "xl",
+          "name": "XL",
+          "items": [
+            {"id":"xl-5","name":"Pulsa Rp5.000","price":7000},
+            {"id":"xl-10","name":"Pulsa Rp10.000","price":12000},
+            {"id":"xl-25","name":"Pulsa Rp25.000","price":27000},
+            {"id":"xl-50","name":"Pulsa Rp50.000","price":52000}
+          ]
+        },
+        {
+          "id": "tri",
+          "name": "Tri (3)",
+          "items": [
+            {"id":"tri-5","name":"Pulsa Rp5.000","price":7000},
+            {"id":"tri-10","name":"Pulsa Rp10.000","price":12000},
+            {"id":"tri-20","name":"Pulsa Rp20.000","price":22000},
+            {"id":"tri-50","name":"Pulsa Rp50.000","price":52000}
+          ]
+        },
+        {
+          "id": "smartfren",
+          "name": "Smartfren",
+          "items": [
+            {"id":"sf-10","name":"Pulsa Rp10.000","price":12000}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bank",
+      "products": [
+        {
+          "id": "transfer-bank",
+          "name": "Transfer Bank",
+          "items": [
+            {"id":"bank-transfer","name":"Layanan Transfer Bank","price":10000}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ewallet",
+      "products": [
+        {
+          "id": "dana",
+          "name": "DANA",
+          "items": [
+            {"id":"dana-topup","name":"Top Up DANA","price":10000}
+          ]
+        },
+        {
+          "id": "ovo",
+          "name": "OVO",
+          "items": [
+            {"id":"ovo-topup","name":"Top Up OVO","price":10000}
+          ]
+        },
+        {
+          "id": "gopay",
+          "name": "GoPay",
+          "items": [
+            {"id":"gopay-topup","name":"Top Up GoPay","price":10000}
+          ]
+        },
+        {
+          "id": "shopeepay",
+          "name": "ShopeePay",
+          "items": [
+            {"id":"shopeepay-topup","name":"Top Up ShopeePay","price":10000}
+          ]
+        },
+        {
+          "id": "linkaja",
+          "name": "LinkAja",
+          "items": [
+            {"id":"linkaja-topup","name":"Top Up LinkAja","price":10000}
+          ]
+        },
+        {
+          "id": "isaku",
+          "name": "i.saku",
+          "items": [
+            {"id":"isaku-topup","name":"Top Up i.saku","price":10000}
+          ]
+        },
+        {
+          "id": "sakuku",
+          "name": "Sakuku",
+          "items": [
+            {"id":"sakuku-topup","name":"Top Up Sakuku","price":10000}
+          ]
+        },
+        {
+          "id": "doku",
+          "name": "DOKU",
+          "items": [
+            {"id":"doku-topup","name":"Top Up DOKU","price":10000}
+          ]
+        },
+        {
+          "id": "ewallet-lain",
+          "name": "E-Wallet Lainnya",
+          "items": [
+            {"id":"ewallet-lain-topup","name":"Top Up E-Wallet Lainnya","price":10000}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tunai",
+      "products": [
+        {
+          "id": "tarik-tunai",
+          "name": "Tarik Tunai",
+          "items": [
+            {"id":"tarik-tunai-fee","name":"Layanan Tarik Tunai","price":10000}
+          ]
+        }
+      ]
+    }
+  ]
+}
