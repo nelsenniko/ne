@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#100d1d">
+<title>Nelshop. | Digital & Payment</title>
+<style>
+:root{color-scheme:dark;--bg:#100d1d;--panel:#1b1630;--panel2:#251d40;--line:#35294f;--purple:#9567ff;--text:#fff;--muted:#aaa1c0;--field:#110e20;--icon:#32214f;--success:#72e6b1;--shadow:0 14px 40px #0002}
+html[data-theme="light"]{color-scheme:light;--bg:#f6f4fc;--panel:#fff;--panel2:#f0ebfc;--line:#e3dcf4;--purple:#7545df;--text:#251a3a;--muted:#786d8d;--field:#faf8ff;--icon:#eee5ff;--success:#147d55;--shadow:0 12px 35px #30205212}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--purple);outline-offset:3px}
+.wrap{width:min(100% - 28px,1000px);margin:auto}
+header{display:flex;align-items:center;justify-content:space-between;padding:22px 0 28px;gap:14px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.logo{width:46px;height:46px;display:grid;place-items:center;border-radius:15px;background:linear-gradient(135deg,#a77aff,#6b3cdb);font-size:25px;font-weight:900;color:white;box-shadow:0 8px 24px #8052ee35}
+.brand-name{font-size:23px;line-height:1.1;font-weight:850;letter-spacing:-.8px}
+.brand-sub{font-size:10px;letter-spacing:2px;color:var(--muted);margin-top:5px}
+.icon-btn{border:1px solid var(--line);border-radius:14px;background:var(--panel);color:var(--text);width:44px;height:44px;font-size:20px}
+.hero{margin:8px 0 22px}
+.eyebrow{color:var(--purple);font-size:11px;font-weight:800;letter-spacing:1.7px;text-transform:uppercase}
+h1{font-size:clamp(27px,5vw,36px);line-height:1.2;letter-spacing:-1px;margin:7px 0}
+.subtitle{color:var(--muted);margin:0}
+.page-head{display:flex;align-items:center;gap:12px;margin:8px 0 22px}
+.back{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:12px;padding:9px 13px}
+.page-head h2{font-size:22px;margin:0}
+.page-head p{font-size:13px;color:var(--muted);margin:3px 0 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.category{position:relative;text-align:left;min-width:0;padding:17px 14px;border:1px solid var(--line);border-radius:19px;background:var(--panel);color:var(--text);transition:transform .15s,border-color .15s;min-height:160px}
+.category:active,.product:active{transform:scale(.985)}
+.category:hover,.product:hover{border-color:var(--purple)}
+.cat-icon{width:46px;height:46px;border-radius:15px;background:var(--icon);display:grid;place-items:center;font-size:24px;margin-bottom:15px}
+.cat-name{font-size:15px;font-weight:800;display:block}
+.cat-desc{display:block;font-size:12px;color:var(--muted);margin-top:4px;min-height:35px}
+.cat-count{display:inline-block;color:var(--purple);font-size:11px;font-weight:750;margin-top:10px}
+.notice{border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:17px;margin:24px 0}
+.notice-title{font-weight:800;margin-bottom:5px}
+.notice p{font-size:12px;color:var(--muted);margin:5px 0}
+.notice strong{color:var(--text)}
+.catalog-list{display:grid;gap:10px}
+.group-title{font-size:14px;font-weight:800;color:var(--muted);margin:14px 0 0}
+.product{display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;width:100%;padding:15px;border:1px solid var(--line);border-radius:16px;background:var(--panel);color:var(--text)}
+.product-main{min-width:0}
+.product-price{font-size:15px;font-weight:850;color:var(--purple);display:block}
+.product-name{font-weight:700;display:block;margin-top:3px;overflow-wrap:anywhere}
+.product-arrow{font-size:21px;color:var(--muted);flex-shrink:0}
+.empty{border:1px dashed var(--line);border-radius:16px;padding:24px;text-align:center;color:var(--muted)}
+footer{padding:5px 0 30px;text-align:center;color:var(--muted);font-size:12px}
+footer .foot-brand{font-size:14px;font-weight:850;color:var(--purple);margin-bottom:5px}
+footer a{color:var(--purple);text-decoration:none}
+.modal{position:fixed;inset:0;z-index:10;display:none;align-items:flex-end;justify-content:center;background:#080510b8;padding:0}
+.modal.open{display:flex}
+.sheet{width:min(100%,620px);max-height:92dvh;overflow:auto;background:var(--bg);border:1px solid var(--line);border-radius:25px 25px 0 0;padding:12px 20px calc(22px + env(safe-area-inset-bottom));box-shadow:var(--shadow);animation:rise .18s ease-out}
+@keyframes rise{from{transform:translateY(20px);opacity:.6}to{transform:translateY(0);opacity:1}}
+.sheet-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.grabber{width:42px;height:4px;border-radius:8px;background:var(--line);margin:0 auto 18px}
+.sheet h2{font-size:21px;margin:0}
+.sheet-sub{font-size:13px;color:var(--muted);margin:4px 0 16px}
+.field{display:grid;gap:6px;margin:13px 0}
+.field label{font-size:13px;font-weight:700}
+.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:12px;background:var(--field);color:var(--text);padding:12px 13px;min-height:46px}
+.field textarea{min-height:80px;resize:vertical}
+.field small{color:var(--muted);font-size:11px}
+.price-box{padding:13px 14px;border-radius:14px;background:var(--panel2);margin:12px 0}
+.price-row{display:flex;justify-content:space-between;gap:12px;font-size:13px;margin:4px 0}
+.price-row strong{color:var(--purple)}
+.fee-note{font-size:12px;color:var(--muted);margin-top:6px}
+.primary{width:100%;border:0;border-radius:13px;padding:14px;background:linear-gradient(110deg,#9b6aff,#7042db);color:white;font-weight:850;margin-top:12px}
+.secondary{border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--text);padding:9px 12px}
+.toast{position:fixed;z-index:30;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--text);color:var(--bg);padding:11px 16px;border-radius:12px;font-size:13px;max-width:calc(100% - 28px);transition:.2s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.hidden{display:none!important}
+@media(min-width:600px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.category{padding:19px;min-height:170px}.sheet{border-radius:25px;margin:20px;max-height:calc(100dvh - 40px)}.modal{align-items:center}}
+@media(min-width:850px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}header{padding-top:28px}.category{min-height:178px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden="true">N</div>
+      <div><div class="brand-name">Nelshop.</div><div class="brand-sub">DIGITAL &amp; PAYMENT</div></div>
+    </div>
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="Ganti tema">☀️</button>
+  </header>
+
+  <main>
+    <section id="homeView">
+      <div class="hero">
+        <div class="eyebrow">Nelshop Premium</div>
+        <h1>Pilihan</h1>
+       <!-- <p class="subtitle">Pilih kategori layanan yang kamu butuhkan.</p> -->
+      </div>
+      <div class="grid" id="catalog" aria-live="polite"></div>
+    </section>
+
+    <section id="productsView" class="hidden">
+      <div class="page-head">
+        <button class="back" id="backBtn" type="button">← Kembali</button>
+        <div><h2 id="categoryTitle">Kategori</h2><p id="categoryDesc"></p></div>
+      </div>
+      <div class="catalog-list" id="productList"></div>
+    </section>
+
+    <section class="notice">
+      <div class="notice-title">✦ Nelshop Premium</div>
+      <p>Harga dibaca dari file <strong>prices.json</strong>. Harga dan ketersediaan dikonfirmasi admin sebelum transaksi diproses.</p>
+      <p>WhatsApp Admin: <strong>085328736706</strong></p>
+      <p>DANA Admin: <strong>085328736706</strong></p>
+    </section>
+  </main>
+
+  <footer>Nelshop. · Digital &amp; Payment<br>Pesanan diproses setelah dikonfirmasi admin.</footer>
+</div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="sheet">
+    <div class="grabber"></div>
+    <div class="sheet-top">
+      <h2 id="modalTitle">Form Pesanan</h2>
+      <button class="secondary" id="closeModal" type="button" aria-label="Tutup">✕</button>
+    </div>
+    <p class="sheet-sub" id="modalSub">Periksa detail pesanan sebelum dikirim.</p>
+    <form id="transactionForm">
+      <div id="modalBody"></div>
+      <div class="price-box" id="priceBox"></div>
+      <button class="primary" type="submit">Lanjutkan ke WhatsApp ↗</button>
+      <p class="fee-note">Pesanan belum diproses sampai admin mengonfirmasi detail dan harga akhir.</p>
+    </form>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+
+const ADMIN_WA = "628532873706";
+const ADMIN_DANA = "085328736706";
+const ADMIN_FEE = 10000;
+const $ = id => document.getElementById(id);
+
+const categoryInfo = [
+  {id:"game",name:"Game",icon:"🎮",desc:"Diamond, UC, dan voucher game",count:"19 pilihan harga"},
+  {id:"listrik",name:"Listrik",icon:"⚡",desc:"Token dan tagihan listrik",count:"4 pilihan harga"},
+  {id:"pulsa",name:"Pulsa & Data",icon:"📱",desc:"Pulsa semua operator",count:"18 pilihan harga"},
+  {id:"bank",name:"Transfer Bank",icon:"🏦",desc:"Transfer ke rekening bank",count:"Lihat layanan"},
+  {id:"ewallet",name:"Top Up E-Wallet",icon:"👛",desc:"DANA, OVO, GoPay, dan lainnya",count:"9 pilihan harga"},
+  {id:"tunai",name:"Tarik Tunai",icon:"💵",desc:"Ajukan permintaan tarik tunai",count:"Lihat layanan"}
+];
+
+let catalogData = null;
+let currentCategory = "";
+let currentProduct = null;
+let currentItem = null;
+let toastTimer = null;
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  })[char]);
+}
+function formatRupiah(value) {
+  return new Intl.NumberFormat("id-ID", {
+    style:"currency",currency:"IDR",maximumFractionDigits:0
+  }).format(value);
+}
+function notify(message) {
+  const toast = $("toast");
+  toast.textContent = message;
+  toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove("show"), 3000);
+}
+function normalizeCatalog(data) {
+  if (!data || !Array.isArray(data.categories)) {
+    throw new Error("Struktur prices.json tidak valid.");
+  }
+  return {
+    categories:data.categories.map(category => ({
+      ...category,
+      products:Array.isArray(category.products) ? category.products.map(product => ({
+        ...product,
+        items:Array.isArray(product.items) ? product.items.filter(item =>
+          item && item.available !== false &&
+          Number.isSafeInteger(item.price) && item.price > 0 &&
+          typeof item.name === "string" && item.name.trim()
+        ) : []
+      })).filter(product => product.name && product.items.length) : []
+    }))
+  };
+}
+async function loadPrices() {
+  $("catalog").innerHTML = '<div class="empty">Memuat katalog…</div>';
+  try {
+    const response = await fetch("./prices.json", {cache:"no-store"});
+    if (!response.ok) throw new Error("prices.json tidak dapat dibaca.");
+    catalogData = normalizeCatalog(await response.json());
+    renderCategories();
+  } catch (error) {
+    console.error(error);
+    $("catalog").innerHTML = '<div class="empty">Katalog gagal dimuat. Pastikan index.html dan prices.json berada di folder yang sama, lalu buka melalui server web lokal.</div>';
+  }
+}
+function renderCategories() {
+  $("homeView").classList.remove("hidden");
+  $("productsView").classList.add("hidden");
+  $("catalog").innerHTML = categoryInfo.map(category => `
+    <button class="category" type="button" data-category="${category.id}">
+      <span class="cat-icon">${category.icon}</span>
+      <span class="cat-name">${escapeHTML(category.name)}</span>
+      <span class="cat-desc">${escapeHTML(category.desc)}</span>
+      <span class="cat-count">${escapeHTML(category.count)} →</span>
+    </button>
+  `).join("");
+}
+function getCategory(id) {
+  return catalogData?.categories.find(category => category.id === id);
+}
+function renderProducts(categoryId) {
+  const info = categoryInfo.find(category => category.id === categoryId);
+  const category = getCategory(categoryId);
+  if (!info || !category) return notify("Kategori belum tersedia di prices.json.");
+
+  currentCategory = categoryId;
+  $("homeView").classList.add("hidden");
+  $("productsView").classList.remove("hidden");
+  $("categoryTitle").textContent = info.name;
+  $("categoryDesc").textContent = info.desc;
+
+  const products = category.products || [];
+  if (!products.length) {
+    $("productList").innerHTML = '<div class="empty">Belum ada layanan tersedia pada kategori ini.</div>';
+    return;
+  }
+
+  let html = "";
+  for (const product of products) {
+    if (products.length > 1) html += `<div class="group-title">${escapeHTML(product.name)}</div>`;
+    for (const item of product.items || []) {
+      const priceLabel = ["bank","ewallet","tunai"].includes(categoryId)
+        ? "Biaya admin " + formatRupiah(item.price)
+        : formatRupiah(item.price);
+      html += `
+        <button class="product" type="button"
+          data-product="${escapeHTML(product.id)}"
+          data-item="${escapeHTML(item.id)}">
+          <span class="product-main">
+            <span class="product-price">${escapeHTML(priceLabel)}</span>
+            <span class="product-name">${escapeHTML(item.name)}</span>
+          </span>
+          <span class="product-arrow" aria-hidden="true">›</span>
+        </button>`;
+    }
+  }
+  $("productList").innerHTML = html || '<div class="empty">Belum ada pilihan harga yang aktif.</div>';
+}
+function findItem(categoryId, productId, itemId) {
+  const category = getCategory(categoryId);
+  const product = category?.products.find(p => p.id === productId);
+  const item = product?.items.find(i => i.id === itemId && i.available !== false);
+  return product && item ? {product,item} : null;
+}
+function addField(name, label, options = {}) {
+  const {type="text",required=true,placeholder="",hint="",values=null,min=null,step=null} = options;
+  let control = "";
+  if (values) {
+    control = `<select name="${name}" ${required ? "required" : ""}>
+      <option value="">Pilih ${escapeHTML(label.toLowerCase())}</option>
+      ${values.map(value => `<option value="${escapeHTML(value)}">${escapeHTML(value)}</option>`).join("")}
+    </select>`;
+  } else if (type === "textarea") {
+    control = `<textarea name="${name}" ${required ? "required" : ""} placeholder="${escapeHTML(placeholder)}"></textarea>`;
+  } else {
+    control = `<input name="${name}" type="${type}" ${required ? "required" : ""}
+      placeholder="${escapeHTML(placeholder)}" ${min !== null ? `min="${min}"` : ""}
+      ${step !== null ? `step="${step}"` : ""} ${type === "number" ? 'inputmode="numeric"' : ""}>`;
+  }
+  return `<div class="field"><label>${escapeHTML(label)}${required ? " *" : ""}</label>${control}${hint ? `<small>${escapeHTML(hint)}</small>` : ""}</div>`;
+}
+function openOrder(productId,itemId) {
+  const found = findItem(currentCategory,productId,itemId);
+  if (!found) return notify("Pilihan tidak tersedia. Muat ulang katalog.");
+  currentProduct = found.product;
+  currentItem = found.item;
+
+  const service = currentCategory;
+  let fields = "";
+  if (service === "game") {
+    const id = String(currentProduct.id + " " + currentProduct.name).toLowerCase();
+    if (id.includes("ml") || id.includes("mobile legends")) {
+      fields += addField("customerId","User ID");
+      fields += addField("server","Server / Zone ID");
+    } else if (id.includes("pubg")) {
+      fields += addField("customerId","Character ID");
+    } else {
+      fields += addField("customerId","Player ID");
+    }
+    fields += addField("customerName","Nama pemesan",{required:false,placeholder:"Nama kamu"});
+  } else if (service === "listrik") {
+    fields += addField("customerId","Nomor meter / ID pelanggan",{placeholder:"Masukkan nomor pelanggan"});
+    fields += addField("customerName","Nama pelanggan",{required:false,placeholder:"Sesuai data pelanggan"});
+  } else if (service === "pulsa") {
+    fields += addField("phone","Nomor HP tujuan",{type:"tel",placeholder:"08xxxxxxxxxx"});
+  } else if (service === "bank") {
+    fields += addField("bankName","Bank tujuan",{values:["BCA","BRI","BNI","Mandiri","BSI","CIMB Niaga","Bank lainnya"]});
+    fields += addField("otherBank","Nama bank lainnya",{required:false,placeholder:"Isi jika memilih Bank lainnya"});
+    fields += addField("accountNumber","Nomor rekening",{placeholder:"Nomor rekening penerima"});
+    fields += addField("accountName","Nama pemilik rekening",{placeholder:"Sesuai rekening tujuan"});
+    fields += addField("amount","Nominal transfer (Rp)",{type:"number",min:1,step:1,placeholder:"Contoh: 100000"});
+    fields += addField("customerName","Nama pemohon",{placeholder:"Nama kamu"});
+    fields += addField("note","Catatan",{required:false,placeholder:"Informasi tambahan"});
+  } else if (service === "ewallet") {
+    fields += addField("wallet","Jenis e-wallet",{values:["DANA","OVO","GoPay","ShopeePay","LinkAja","Akun e-wallet lainnya"]});
+    fields += addField("phone","Nomor HP / akun tujuan",{placeholder:"Nomor penerima"});
+    fields += addField("amount","Nominal top up (Rp)",{type:"number",min:1,step:1,placeholder:"Contoh: 50000"});
+    fields += addField("customerName","Nama pemesan",{required:false,placeholder:"Nama kamu"});
+  } else if (service === "tunai") {
+    fields += addField("customerName","Nama pemohon",{placeholder:"Nama lengkap"});
+    fields += addField("phone","Nomor HP pemohon",{type:"tel",placeholder:"08xxxxxxxxxx"});
+    fields += addField("amount","Nominal tarik tunai (Rp)",{type:"number",min:10000,step:1000,placeholder:"Minimal Rp10.000"});
+    fields += addField("details","Detail permintaan",{type:"textarea",placeholder:"Jadwal dan keterangan yang diperlukan"});
+  }
+
+  $("modalTitle").textContent = service === "bank" ? "Transfer Bank" :
+    service === "ewallet" ? "Top Up E-Wallet" :
+    service === "tunai" ? "Tarik Tunai" : "Form Pesanan";
+  $("modalSub").textContent = currentProduct.name + " · " + currentItem.name;
+  $("modalBody").innerHTML = fields;
+  const isServiceFee = ["bank","ewallet","tunai"].includes(service);
+  $("priceBox").innerHTML = isServiceFee
+    ? `<div class="price-row"><span>Biaya admin</span><strong>${formatRupiah(currentItem.price)}</strong></div>
+       <div class="fee-note">Nominal transaksi diisi terpisah. Admin mengonfirmasi total akhir melalui WhatsApp.</div>`
+    : `<div class="price-row"><span>Produk</span><span>${escapeHTML(currentItem.name)}</span></div>
+       <div class="price-row"><span>Harga katalog</span><strong>${formatRupiah(currentItem.price)}</strong></div>`;
+  $("modal").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeModal() {
+  $("modal").classList.remove("open");
+  document.body.style.overflow = "";
+}
+function submitTransaction(form) {
+  if (!currentCategory || !currentProduct || !currentItem) return notify("Pilih produk terlebih dahulu.");
+  const latest = findItem(currentCategory,currentProduct.id,currentItem.id);
+  if (!latest || latest.item.price !== currentItem.price) {
+    closeModal();
+    return notify("Harga berubah atau layanan tidak tersedia. Buka ulang katalog.");
+  }
+
+  const data = Object.fromEntries(new FormData(form).entries());
+  for (const key of Object.keys(data)) data[key] = String(data[key] ?? "").trim();
+
+  if (data.amount) {
+    const amount = Number(data.amount);
+    if (!Number.isSafeInteger(amount) || amount < 1) {
+      notify("Nominal harus berupa bilangan bulat positif.");
+      form.elements.namedItem("amount").focus();
+      return;
+    }
+    if (currentCategory === "tunai" && amount < 10000) {
+      notify("Minimal tarik tunai Rp10.000.");
+      form.elements.namedItem("amount").focus();
+      return;
+    }
+  }
+  if (data.bankName === "Bank lainnya" && !data.otherBank) {
+    notify("Isi nama bank tujuan.");
+    form.elements.namedItem("otherBank").focus();
+    return;
+  }
+  if (data.phone && !/^[0-9+\s().-]{8,20}$/.test(data.phone)) {
+    notify("Periksa kembali nomor HP.");
+    form.elements.namedItem("phone").focus();
+    return;
+  }
+
+  const labels = {
+    customerId:"ID / nomor pelanggan",phone:"Nomor HP / akun tujuan",
+    server:"Server / Zone ID",bankName:"Bank tujuan",otherBank:"Nama bank lainnya",
+    accountNumber:"Nomor rekening",accountName:"Nama pemilik rekening",
+    customerName:"Nama pemohon",amount:"Nominal transaksi (Rp)",
+    details:"Detail permintaan",note:"Catatan",wallet:"Jenis e-wallet"
+  };
+  const categoryName = categoryInfo.find(c => c.id === currentCategory)?.name || currentCategory;
+  const orderId = "NS" + Date.now().toString().slice(-9);
+  const isFeeService = ["bank","ewallet","tunai"].includes(currentCategory);
+  const lines = [
+    "*PESANAN BARU NELSHOP*","",
+    "ID Pesanan: " + orderId,
+    "Kategori: " + categoryName,
+    "Produk: " + currentProduct.name,
+    "Pilihan: " + currentItem.name,
+    (isFeeService ? "Biaya admin katalog: " : "Harga katalog: ") + formatRupiah(currentItem.price),
+    "",
+    ...Object.entries(data).filter(([key,value]) => {
+      if (!value) return false;
+      if (key === "otherBank" && data.bankName !== "Bank lainnya") return false;
+      return true;
+    }).map(([key,value]) => {
+      const shown = key === "bankName" && value === "Bank lainnya"
+        ? (data.otherBank || value) : value;
+      return (labels[key] || key) + ": " + shown;
+    }),
+    "",
+    ...(currentCategory === "bank" || currentCategory === "ewallet" || currentCategory === "tunai"
+      ? ["Biaya admin tetap: " + formatRupiah(ADMIN_FEE)] : []),
+    ...(currentCategory === "tunai" ? [
+      "DANA admin: " + ADMIN_DANA,
+      "Pembayaran dan penyerahan uang mengikuti instruksi admin."
+    ] : []),
+    "Mohon konfirmasi harga akhir sebelum memproses.",
+    "Status: MENUNGGU KONFIRMASI ADMIN."
+  ];
+  const url = "https://wa.me/" + ADMIN_WA + "?text=" + encodeURIComponent(lines.join("\n"));
+  closeModal();
+  const link = document.createElement("a");
+  link.href = url;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  notify("WhatsApp dibuka. Tekan Kirim untuk mengirim pesanan.");
+}
+
+$("catalog").addEventListener("click",event => {
+  const button = event.target.closest("[data-category]");
+  if (button) renderProducts(button.dataset.category);
+});
+$("productList").addEventListener("click",event => {
+  const button = event.target.closest("[data-product][data-item]");
+  if (button) openOrder(button.dataset.product,button.dataset.item);
+});
+$("backBtn").addEventListener("click",renderCategories);
+$("closeModal").addEventListener("click",closeModal);
+$("modal").addEventListener("click",event => {
+  if (event.target === $("modal")) closeModal();
+});
+document.addEventListener("keydown",event => {
+  if (event.key === "Escape" && $("modal").classList.contains("open")) closeModal();
+});
+$("transactionForm").addEventListener("submit",event => {
+  event.preventDefault();
+  submitTransaction(event.currentTarget);
+});
+$("themeBtn").addEventListener("click",() => {
+  const root = document.documentElement;
+  const next = root.dataset.theme === "dark" ? "light" : "dark";
+  root.dataset.theme = next;
+  $("themeBtn").textContent = next === "dark" ? "☀️" : "🌙";
+  $("themeBtn").setAttribute("aria-label",next === "dark" ? "Aktifkan mode terang" : "Aktifkan mode gelap");
+});
+loadPrices();
+</script>
+</body>
+</html>
