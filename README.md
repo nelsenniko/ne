@@ -1,1 +1,1 @@
-# [pinzora](https://nelsenniko.github.io/pinzora/)
+# [pinzora](https://nelsenniko.github.io/ns/)
