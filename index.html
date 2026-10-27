@@ -1,0 +1,728 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#7654f6">
+  <meta name="color-scheme" content="dark light">
+
+  <title>Nelsen SHOP | Premium Digital Store</title>
+  <meta
+    name="description"
+    content="Nelsen SHOP, platform belanja produk digital yang praktis, cepat, dan mudah digunakan."
+  >
+
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icon.svg">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0914;
+      --surface: #151124;
+      --surface-2: #1d1830;
+      --text: #f7f5ff;
+      --muted: #aaa3c0;
+      --primary: #8b70ff;
+      --primary-2: #6c49ed;
+      --border: rgba(255,255,255,.09);
+      --success: #62e6ad;
+      --danger: #ff9aab;
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      margin: 0;
+      padding:
+        max(20px, env(safe-area-inset-top))
+        18px
+        max(20px, env(safe-area-inset-bottom));
+      display: grid;
+      place-items: center;
+      overflow-x: hidden;
+      background:
+        radial-gradient(
+          ellipse at 50% 0%,
+          rgba(118,84,246,.22),
+          transparent 48%
+        ),
+        radial-gradient(
+          ellipse at 100% 100%,
+          rgba(96,58,196,.13),
+          transparent 40%
+        ),
+        var(--bg);
+      color: var(--text);
+      font-family:
+        Inter, ui-sans-serif, system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    a {
+      font: inherit;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 460px;
+      margin: auto;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border-radius: 15px;
+      background: linear-gradient(145deg, #a18aff, #6845e8);
+      color: white;
+      font-size: 25px;
+      font-weight: 900;
+      box-shadow: 0 8px 28px rgba(118,84,246,.3);
+    }
+
+    .brand-name {
+      font-size: 16px;
+      font-weight: 850;
+      letter-spacing: .8px;
+    }
+
+    .brand-caption {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: .3px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 10px rgba(98,230,173,.5);
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      padding: 30px 22px 24px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(
+        155deg,
+        rgba(30,24,49,.97),
+        rgba(17,14,29,.98)
+      );
+      box-shadow: 0 24px 80px rgba(0,0,0,.28);
+    }
+
+    .card::before {
+      position: absolute;
+      top: -115px;
+      left: 50%;
+      width: 250px;
+      height: 200px;
+      border-radius: 50%;
+      background: rgba(118,84,246,.16);
+      filter: blur(55px);
+      content: "";
+      pointer-events: none;
+      transform: translateX(-50%);
+    }
+
+    .content {
+      position: relative;
+      text-align: center;
+    }
+
+    .hero-icon {
+      width: 86px;
+      height: 86px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 22px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 28px;
+      background: linear-gradient(145deg, #9b83ff, #6946e8);
+      box-shadow:
+        0 12px 38px rgba(118,84,246,.32),
+        inset 0 1px rgba(255,255,255,.3);
+      color: white;
+      font-size: 43px;
+      font-weight: 900;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 13px;
+      color: #c3b6ff;
+      font-size: 11px;
+      font-weight: 750;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 8vw, 37px);
+      font-weight: 900;
+      letter-spacing: -1.4px;
+      line-height: 1.15;
+    }
+
+    h1 span {
+      color: #a994ff;
+    }
+
+    .description {
+      max-width: 330px;
+      margin: 15px auto 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 9px;
+      margin: 26px 0;
+    }
+
+    .feature {
+      min-width: 0;
+      padding: 13px 5px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .feature-icon {
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+
+    .feature-label {
+      color: #e8e3f8;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .actions {
+      display: grid;
+      gap: 11px;
+    }
+
+    .button {
+      width: 100%;
+      min-height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 14px 18px;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      background: linear-gradient(135deg, #9278ff, #704ce9);
+      color: white;
+      font-size: 14px;
+      font-weight: 800;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(118,84,246,.22);
+      transition: transform .18s ease, filter .18s ease;
+    }
+
+    .button:hover {
+      filter: brightness(1.08);
+    }
+
+    .button:active {
+      transform: scale(.985);
+    }
+
+    .button:focus-visible {
+      outline: 3px solid #c5b8ff;
+      outline-offset: 3px;
+    }
+
+    .button-secondary {
+      border-color: var(--border);
+      background: rgba(255,255,255,.035);
+      color: var(--text);
+      box-shadow: none;
+    }
+
+    .button[hidden] {
+      display: none;
+    }
+
+    .hint {
+      min-height: 36px;
+      margin-top: 15px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .hint.error {
+      color: var(--danger);
+    }
+
+    .hint.success {
+      color: var(--success);
+    }
+
+    .loader {
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+      border: 2px solid rgba(255,255,255,.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .footer {
+      padding: 21px 8px 0;
+      color: #817a98;
+      font-size: 11px;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    .footer strong {
+      color: #c3b6ff;
+      font-weight: 750;
+    }
+
+    @media (max-width: 360px) {
+      body {
+        padding-right: 12px;
+        padding-left: 12px;
+      }
+
+      .card {
+        padding: 25px 15px 20px;
+      }
+
+      .status-pill {
+        padding: 7px 8px;
+        font-size: 10px;
+      }
+
+      .features {
+        gap: 6px;
+      }
+
+      .feature-label {
+        font-size: 9px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">N</div>
+        <div>
+          <div class="brand-name">NELSHOP</div>
+          <div class="brand-caption">PREMIUM DIGITAL STORE</div>
+        </div>
+      </div>
+
+      <div class="status-pill">
+        <span class="status-dot" id="statusDot"></span>
+        <span id="connectionLabel">Memeriksa</span>
+      </div>
+    </header>
+
+    <section class="card">
+      <div class="content">
+        <div class="hero-icon" aria-hidden="true">N</div>
+
+        <div class="eyebrow">
+          <span aria-hidden="true">✦</span>
+          Welcome to NELSHOP
+        </div>
+
+        <h1>
+          Belanja Digital<br>
+          <span>Lebih Praktis.</span>
+        </h1>
+
+    <!--    <p class="description">
+          Satu tempat untuk kebutuhan produk digital.
+          Akses mudah, tampilan nyaman, dan pengalaman
+          belanja yang dirancang untukmu.
+        </p>-->
+
+        <div class="features">
+          <div class="feature">
+            <div class="feature-icon" aria-hidden="true">⚡</div>
+            <div class="feature-label">Akses Praktis</div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon" aria-hidden="true">🛡️</div>
+            <div class="feature-label">Utamakan Keamanan</div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon" aria-hidden="true">📱</div>
+            <div class="feature-label">Ramah Perangkat</div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button
+            id="installButton"
+            class="button button-secondary"
+            type="button"
+            hidden
+          >
+            <span aria-hidden="true">＋</span>
+            Pasang Aplikasi
+          </button>
+
+          <a
+            id="continueButton"
+            class="button"
+            href="#"
+            aria-describedby="statusMessage"
+          >
+            <span class="loader" id="buttonLoader" aria-hidden="true"></span>
+            <span id="buttonLabel">Memuat alamat toko...</span>
+          </a>
+        </div>
+
+        <p
+          class="hint"
+          id="statusMessage"
+          role="status"
+          aria-live="polite"
+        >
+          Mengambil alamat toko terbaru...
+        </p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>© <span id="currentYear"></span> <strong>Nelsen SHOP</strong></div>
+      <div>Premium Digital Store · PINZORA CORE SYSTEMS</div>
+    </footer>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const CONFIG_URL = "./redirect.json";
+      const REDIRECT_DELAY_SECONDS = 5;
+
+      const installButton = document.getElementById("installButton");
+      const continueButton = document.getElementById("continueButton");
+      const buttonLabel = document.getElementById("buttonLabel");
+      const buttonLoader = document.getElementById("buttonLoader");
+      const statusMessage = document.getElementById("statusMessage");
+      const connectionLabel = document.getElementById("connectionLabel");
+      const statusDot = document.getElementById("statusDot");
+
+      let installPrompt = null;
+      let shopUrl = "";
+      let countdownTimer = null;
+      let countdown = REDIRECT_DELAY_SECONDS;
+      let redirectStarted = false;
+
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+
+      function setStatus(message, type = "") {
+        statusMessage.textContent = message;
+        statusMessage.className = "hint";
+
+        if (type) {
+          statusMessage.classList.add(type);
+        }
+      }
+
+      function setConnection(online) {
+        connectionLabel.textContent = online ? "Online" : "Offline";
+        statusDot.style.background = online ? "#62e6ad" : "#ff9aab";
+        statusDot.style.boxShadow = online
+          ? "0 0 10px rgba(98,230,173,.5)"
+          : "0 0 10px rgba(255,154,171,.35)";
+      }
+
+      function isValidShopUrl(value) {
+        try {
+          const parsed = new URL(value);
+
+          return (
+            parsed.protocol === "https:" &&
+            parsed.hostname.length > 0 &&
+            parsed.username === "" &&
+            parsed.password === ""
+          );
+        } catch {
+          return false;
+        }
+      }
+
+      function stopCountdown() {
+        if (countdownTimer !== null) {
+          clearInterval(countdownTimer);
+          countdownTimer = null;
+        }
+      }
+
+      function startCountdown() {
+        stopCountdown();
+
+        countdown = REDIRECT_DELAY_SECONDS;
+        buttonLabel.textContent = `Lanjutkan (${countdown})`;
+        buttonLoader.hidden = true;
+
+        setStatus(
+          `Toko siap dibuka. Pengalihan otomatis dalam ${countdown} detik.`
+        );
+
+        countdownTimer = setInterval(() => {
+          if (redirectStarted) {
+            stopCountdown();
+            return;
+          }
+
+          countdown -= 1;
+
+          if (countdown > 0) {
+            buttonLabel.textContent = `Lanjutkan (${countdown})`;
+            setStatus(
+              `Toko siap dibuka. Pengalihan otomatis dalam ${countdown} detik.`
+            );
+            return;
+          }
+
+          stopCountdown();
+          redirectToShop();
+        }, 1000);
+      }
+
+      function redirectToShop() {
+        if (redirectStarted) return;
+
+        if (!shopUrl || !isValidShopUrl(shopUrl)) {
+          setStatus(
+            "Alamat toko belum tersedia. Periksa redirect.json lalu muat ulang halaman.",
+            "error"
+          );
+          return;
+        }
+
+        redirectStarted = true;
+        stopCountdown();
+
+        buttonLabel.textContent = "Membuka Nelsen SHOP...";
+        buttonLoader.hidden = false;
+        setStatus("Mengalihkan ke alamat toko...");
+
+        window.location.assign(shopUrl);
+      }
+
+      async function loadRedirectUrl() {
+        continueButton.setAttribute("aria-disabled", "true");
+        buttonLabel.textContent = "Memuat alamat toko...";
+        buttonLoader.hidden = false;
+
+        try {
+          const response = await fetch(
+            `${CONFIG_URL}?t=${Date.now()}`,
+            {
+              cache: "no-store",
+              headers: {
+                "Accept": "application/json"
+              }
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error(
+              `redirect.json tidak dapat dibaca (${response.status})`
+            );
+          }
+
+          const config = await response.json();
+
+          if (!config || !isValidShopUrl(config.url)) {
+            throw new Error("URL pada redirect.json tidak valid");
+          }
+
+          shopUrl = new URL(config.url).href;
+          continueButton.href = shopUrl;
+          continueButton.removeAttribute("aria-disabled");
+
+          buttonLoader.hidden = true;
+          setConnection(navigator.onLine);
+
+          startCountdown();
+        } catch (error) {
+          console.error("Gagal memuat konfigurasi toko:", error);
+
+          stopCountdown();
+          shopUrl = "";
+          continueButton.href = "#";
+          continueButton.removeAttribute("aria-disabled");
+
+          buttonLoader.hidden = true;
+          buttonLabel.textContent = "Coba Lagi";
+
+          setStatus(
+            "Alamat toko gagal dimuat. Pastikan redirect.json tersedia dan berisi URL HTTPS yang benar.",
+            "error"
+          );
+          setConnection(false);
+        }
+      }
+
+      continueButton.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        if (!shopUrl) {
+          loadRedirectUrl();
+          return;
+        }
+
+        redirectToShop();
+      });
+
+      installButton.addEventListener("click", async () => {
+        if (!installPrompt) {
+          setStatus(
+            "Jika pemasangan tidak tersedia, buka menu browser lalu pilih Tambahkan ke layar utama."
+          );
+          return;
+        }
+
+        const promptEvent = installPrompt;
+        installPrompt = null;
+        installButton.hidden = true;
+
+        try {
+          await promptEvent.prompt();
+          const choice = await promptEvent.userChoice;
+
+          if (choice && choice.outcome === "accepted") {
+            setStatus("Permintaan pemasangan aplikasi diterima.", "success");
+          } else {
+            setStatus("Pemasangan dibatalkan. Kamu tetap bisa membuka toko.");
+          }
+        } catch (error) {
+          console.error("Prompt pemasangan gagal:", error);
+          setStatus("Pemasangan tidak tersedia saat ini.");
+        }
+      });
+
+      window.addEventListener("beforeinstallprompt", (event) => {
+        event.preventDefault();
+        installPrompt = event;
+        installButton.hidden = false;
+      });
+
+      window.addEventListener("appinstalled", () => {
+        installPrompt = null;
+        installButton.hidden = true;
+        setStatus("Nelsen SHOP berhasil dipasang.", "success");
+      });
+
+      window.addEventListener("online", () => {
+        setConnection(true);
+      });
+
+      window.addEventListener("offline", () => {
+        setConnection(false);
+        setStatus(
+          "Perangkat sedang offline. Pengalihan mungkin tidak berhasil.",
+          "error"
+        );
+      });
+
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("./sw.js")
+            .catch((error) => {
+              console.error("Pendaftaran service worker gagal:", error);
+            });
+        });
+      }
+
+      setConnection(navigator.onLine);
+      loadRedirectUrl();
+    })();
+  </script>
+</body>
+</html>
